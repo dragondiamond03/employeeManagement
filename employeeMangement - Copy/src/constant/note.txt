@@ -1,0 +1,22 @@
+This regular expression is used to match dates in the format dd/mm/yyyy or dd-mm-yyyy or dd.mm.yyyy. The regular expression checks if the date is valid, taking into account the number of days in each month and the leap year.
+
+Here's a breakdown of the different parts of the regular expression:
+
+^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1 - This part of the regex matches dates that end with 31, for example 31/12/2022. 0?[13578] matches the months of January, March, May, and July. 1[02] matches the months of October and December.
+
+(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2)) - This part of the regex matches dates that end with 29 or 30, for example 29/02/2022 or 30/04/2022. 0?[1,3-9] matches the months of January, March, April, May, June, July, August, and September. 1[0-2] matches the months of October and December.
+
+(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$ - This part of the regex matches the year of the date. It allows years from 1600 to 2999.
+
+|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d) - This part of the regex matches the date 29/02 in a leap year. A leap year is defined as a year that is divisible by 4, except for years that are divisible by 100 but not divisible by 400.
+
+(?:(?:16|[2468][048]|[3579][26])00))))$ - This part of the regex matches the year of the date in a leap year, where the year is divisible by 400, for example, 29/02/2000.
+
+|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.) - This part of the regex matches dates from 01 to 28, for example, 28/02/2022.
+
+(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$ - This part of the regex matches the month and year of the date, allowing years from 1600 to 2999.
+
+The regular expression returns true if the date matches the format, and false if it doesn't match the format.
+
+
+
